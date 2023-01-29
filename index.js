@@ -26,16 +26,16 @@ app.post("/form", async (req, res) => {
       subject: subject,
       text: message,
     };
-    const response = await client.message.create(
+    const response = await client.messages.create(
       process.env.MAILGUN_DOMAIN_URL,
       messageData
     );
-    res.status.json(response);
+    res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 
-  res.json({ message: "get/form OK ✅" });
+  res.status(200).json({ message: "get/form OK ✅" });
 });
 app.get("/", (req, res) => {
   res.json({ message: "server is up" });
