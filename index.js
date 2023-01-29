@@ -21,7 +21,7 @@ app.post("/form", async (req, res) => {
     console.log(req.body);
     const { firstname, lastname, email, subject, message } = req.body;
     const messageData = {
-      from: `${firstname} ${lastname} mathias.berlancourt@gmail.com`,
+      from: `${firstname} ${lastname} <mathias.berlancourt@gmail.com>`,
       to: email,
       subject: subject,
       text: message,
@@ -30,7 +30,7 @@ app.post("/form", async (req, res) => {
       process.env.MAILGUN_DOMAIN_URL,
       messageData
     );
-    res.status(200).json(response);
+    res.status(200).json(messageData);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
