@@ -21,8 +21,8 @@ app.post("/form", async (req, res) => {
     console.log(req.body);
     const { firstname, lastname, email, subject, message } = req.body;
     const messageData = {
-      from: `${firstname} ${lastname} <${email}>`,
-      to: "mathias.berlancourt@gmail.com",
+      from: `${firstname} ${lastname} mathias.berlancourt@gmail.com`,
+      to: email,
       subject: subject,
       text: message,
     };
@@ -34,8 +34,6 @@ app.post("/form", async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-
-  res.status(200).json({ message: "get/form OK ✅" });
 });
 app.get("/", (req, res) => {
   res.json({ message: "server is up" });
